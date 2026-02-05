@@ -1,0 +1,193 @@
+/* Extra styles to complement Tailwind (kept minimal to preserve design) */
+:root { scroll-behavior: smooth; }
+
+/* Brand tokens for RJ Contabilidade */
+:root{
+  --bg-main: #020202; /* deeper main background for stronger contrast */
+  --bg-sec: #070707;  /* section base */
+  --green: #3F7A43; /* slightly darker green for improved contrast */
+  --green-dark: #2E5C33;
+  --neon: #2EDB48; /* toned neon for accents */
+  --soft-green: #7FE6A0; /* softer green for secondary highlights */
+  --text-main: #FFFFFF;
+  --text-sec: #CFCFCF;
+  --text-muted: #9A9A9A;
+  --border: #1F1F1F;
+  --neon-border: rgba(46,255,78,0.4);
+  --panel-bg: #0d0f10; /* dark gray that pairs with brand green */
+  --section-bg: #0e0f10; /* slightly lighter gray for alternating sections (subtler) */
+}
+
+html { -webkit-text-size-adjust: 100%; }
+body { font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial; background: var(--bg-main); color: var(--text-main); }
+@media (prefers-reduced-motion: reduce) {
+  :root { scroll-behavior: auto; }
+  * { transition-duration: 0.001ms !important; animation-duration: 0.001ms !important; }
+}
+/* Focus ring for keyboard users */
+:focus-visible { outline: 3px solid rgba(37, 99, 235, 0.6); outline-offset: 2px; }
+
+/* Lead form / file-drop styles */
+.drop-area {
+  border: 2px dashed rgba(148,163,184,0.14);
+  background: rgba(255,255,255,0.02);
+}
+.drop-area.dragover {
+  border-color: rgba(59,130,246,0.9);
+  background: rgba(59,130,246,0.04);
+}
+.drop-area { border-color: var(--border); }
+.drop-area svg { color: var(--text-sec); }
+.drop-area p { color: var(--text-sec); }
+.drop-area.dragover { border-color: var(--neon); box-shadow: 0 6px 24px rgba(46,255,78,0.06); }
+.file-chip {
+  background: rgba(243,244,246,0.8);
+  padding: 0.4rem 0.6rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+}
+.file-chip { background: rgba(255,255,255,0.03); color: var(--text-main); border: 1px solid var(--border); }
+.progress-bar {
+  height: 0.5rem;
+  border-radius: 9999px;
+  background: rgba(226,232,240,0.4);
+  overflow: hidden;
+}
+.progress-bar { background: rgba(255,255,255,0.04); border: 1px solid var(--neon-border); }
+.progress-bar > i {
+  display: block;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg,#3b82f6,#8b5cf6);
+  transition: width 300ms ease;
+}
+.progress-bar > i { background: linear-gradient(90deg,var(--green),var(--neon)); box-shadow: 0 4px 18px rgba(46,255,78,0.12); }
+
+/* Header / Footer */
+.site-header { background: var(--bg-sec); border-bottom: 1px solid var(--border); }
+.site-footer { background: var(--bg-sec); border-top: 1px solid var(--border); color: var(--text-sec); }
+
+/* Card */
+.card { background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02)); border: 1px solid var(--border); box-shadow: 0 6px 24px rgba(0,0,0,0.6); border-radius: 12px; }
+
+/* Headings */
+.neon-title { color: var(--neon); text-shadow: 0 4px 28px rgba(46,255,78,0.06); }
+.accent-title { color: var(--green); }
+
+/* Brand panel: shared background and green text for hero/benefits */
+.brand-panel { background: var(--panel-bg); color: var(--green) !important; }
+.brand-panel h1, .brand-panel h2, .brand-panel h3 { color: var(--green) !important; }
+.brand-panel p, .brand-panel li { color: var(--text-main) !important; }
+.brand-panel .lead { color: var(--soft-green) !important; }
+.image-panel { background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:0.5rem; border-radius:12px; }
+
+/* Alternating section background for clear transitions */
+.section-alt { background: var(--section-bg) !important; color: var(--text-main) !important; }
+.section-alt .lead { color: var(--text-sec) !important; }
+.section-alt .muted { color: var(--text-sec) !important; }
+
+/* Visual divider between sections to create a visible transition */
+
+/* Subtle gradient background applied per-section to create gentle transitions */
+.section-gradient { background: linear-gradient(180deg, var(--bg-sec) 0%, rgba(74,143,82,0.02) 30%, var(--section-bg) 100%) !important; }
+.section-gradient.section-invert { background: linear-gradient(180deg, var(--section-bg) 0%, rgba(74,143,82,0.02) 30%, var(--bg-sec) 100%) !important; }
+
+/* Full-viewport gradient overlay that updates on scroll */
+.bg-gradient-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(180deg, var(--bg-main) 0%, var(--panel-bg) 100%);
+  transition: background 220ms linear;
+  will-change: background;
+}
+
+/* Slight overlay tint to ensure foreground text remains readable */
+.bg-gradient-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.2));
+  pointer-events: none;
+}
+
+/* Buttons */
+.btn-primary { background: var(--green); color: var(--text-main); border-radius: 6px; padding: 0.6rem 1.05rem; border: none; display:inline-flex; align-items:center; gap:0.5rem; }
+.btn-primary:hover { background: var(--green-dark); }
+.btn-ghost { background: transparent; border: 1px solid var(--border); color: var(--text-sec); border-radius:6px; padding:0.5rem 0.9rem; }
+
+/* Neon separators */
+.neon-line { height:2px; background: linear-gradient(90deg, transparent, var(--neon), transparent); box-shadow: 0 6px 28px rgba(46,255,78,0.06); }
+
+/* Text helpers */
+.muted { color: var(--text-muted); }
+.lead { color: var(--text-sec); font-size:1.125rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition-duration: 0.001ms !important; animation-duration: 0.001ms !important; }
+}
+
+/* Map common Tailwind utility classes to brand palette for consistent contrast */
+.bg-white { background-color: var(--bg-sec) !important; }
+.bg-gray-50 { background-color: rgba(255,255,255,0.02) !important; }
+.text-gray-900 { color: var(--text-main) !important; }
+.text-gray-700 { color: var(--text-sec) !important; }
+.text-gray-600 { color: var(--text-sec) !important; }
+.text-gray-500 { color: var(--text-muted) !important; }
+.text-gray-400 { color: var(--text-muted) !important; }
+.text-gray-600 { color: var(--text-sec) !important; }
+.border-gray-200 { border-color: var(--border) !important; }
+.border-gray-800 { border-color: var(--border) !important; }
+.bg-blue-600 { background-color: var(--green) !important; color: var(--text-main) !important; }
+.hover\:bg-blue-700:hover { background-color: var(--green-dark) !important; }
+.text-blue-600 { color: var(--green) !important; }
+.bg-white\/10 { background-color: rgba(255,255,255,0.06) !important; }
+.border-white\/20 { border-color: rgba(255,255,255,0.2) !important; }
+
+/* Override specific gradients that used blue/purple to brand greens */
+.bg-gradient-to-r.from-blue-600.to-purple-600 { background: linear-gradient(90deg, rgba(74,143,82,0.12), rgba(46,255,78,0.06)) !important; }
+
+/* Replace other blue/purple gradient utilities with brand green gradients */
+.bg-gradient-to-br.from-blue-600.via-blue-700.to-purple-700 { background: linear-gradient(90deg, rgba(74,143,82,0.14), rgba(46,255,78,0.08)) !important; }
+
+/* Map light-blue text used in CTA areas to soft green for contrast */
+.text-blue-100 { color: var(--soft-green) !important; }
+
+/* Ensure links use brand green */
+a { color: var(--green); }
+a:hover { color: var(--green-dark); }
+
+/* Use consistent dark panels for cards to increase contrast */
+.card { background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02)) !important; border: 1px solid rgba(255,255,255,0.04); box-shadow: 0 6px 18px rgba(0,0,0,0.6); }
+
+/* Improve button contrast and visibility */
+.btn-primary { box-shadow: 0 10px 30px rgba(74,143,82,0.14); border: 1px solid rgba(255,255,255,0.04); }
+.btn-primary:focus { outline: 3px solid rgba(46,255,78,0.12); outline-offset: 3px; }
+.btn-ghost { border-color: var(--border); }
+
+/* Ensure inputs and textareas are readable on dark backgrounds */
+input, textarea, select { background: rgba(255,255,255,0.02); color: var(--text-main); border: 1px solid var(--border); }
+input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.45); }
+
+/* Form section contrast helpers */
+.form-section-outer { background: linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.5)); border-radius: 16px; padding: 1rem; }
+.form-section-inner { background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border: 1px solid rgba(255,255,255,0.04); border-radius: 12px; padding: 1.25rem; }
+.form-section-outer .text-gray-900, .form-section-inner .text-gray-900 { color: var(--text-main) !important; }
+.form-section-inner input, .form-section-inner textarea { background: rgba(255,255,255,0.02); color: var(--text-main); border: 1px solid rgba(255,255,255,0.06); }
+.form-section-inner .drop-area { background: rgba(255,255,255,0.015); border: 1px dashed rgba(255,255,255,0.04); }
+.form-section-inner .file-chip { background: rgba(255,255,255,0.03); color: var(--text-main); }
+.form-section-inner .btn-primary { box-shadow: 0 8px 30px rgba(63,122,67,0.14); }
+
+/* Make small metadata/badges more visible */
+.inline-flex.items-start.gap-2.px-4.py-3.rounded-lg.mb-6 { background: rgba(255,255,255,0.02); border: 1px solid var(--border); }
+
+/* Footer adjustments */
+.site-footer p, .site-footer a, .site-footer li { color: var(--text-sec); }
+.site-footer { color: var(--text-sec); }
+
+/* Card adjustments to ensure contrast */
+.card { background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); }
+
+/* Make CTA areas stand out using neon separator */
+.neon-cta { border-top: 1px solid var(--neon-border); box-shadow: 0 -6px 40px rgba(46,255,78,0.03); }
