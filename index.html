@@ -375,7 +375,7 @@
               </svg>
             </button>
             <div class="faq-a" hidden>
-              Você pode enviar por WhatsApp, e-mail ou presencialmente. A gente orienta o que precisa e confirma o recebimento.
+              Você anexa os documentos no formulário abaixo (obrigatório) e envia junto da sua mensagem. A gente confirma o recebimento e orienta os próximos passos.
             </div>
           </div>
         </div>
@@ -388,7 +388,7 @@
       <div class="container">
         <div class="section-head reveal">
           <h2>Fale Conosco / <span class="accent-title">Envie Documentos</span></h2>
-          <p class="lead">Envie sua dúvida e, se quiser, anexe documentos para uma análise inicial.</p>
+          <p class="lead">Envie sua dúvida e anexe documentos para uma análise inicial.</p>
         </div>
 
         <div class="form-wrap" style="margin-top:18px;">
@@ -398,7 +398,14 @@
             <div class="muted">Tel/WhatsApp: (64) 99228-8869 • E-mail: contato@rjcontabilidade.com.br</div>
           </div>
 
-          <form class="form" id="contactForm" novalidate enctype="multipart/form-data">
+          <form
+            class="form"
+            id="contactForm"
+            method="post"
+            action="/upload.php"
+            enctype="multipart/form-data"
+            novalidate
+          >
             <div class="row-2">
               <div>
                 <label for="nome">Nome</label>
@@ -427,14 +434,18 @@
             </div>
 
             <div>
-              <label for="documents">Anexar documentos (opcional)</label>
+              <label for="documents">Anexar documentos <span class="req">*</span></label>
               <input
                 id="documents"
-                name="files[]"
+                name="files"
                 type="file"
                 multiple
+                required
                 accept=".pdf,.doc,.docx,.png,.jpg,.jpeg,.txt"
               />
+              <div class="muted" style="font-size:12px; margin-top:6px;">
+                Até 3 arquivos • Máx. 10MB por arquivo
+              </div>
             </div>
 
             <div class="hero-actions" style="margin-top:6px;">
@@ -445,7 +456,7 @@
                   <path d="M22 2L15 22l-4-9-9-4 20-7Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
                 </svg>
               </button>
-              <a class="btn-ghost" href="https://www.google.com/maps/search/?api=1&query=Rua%2026%2C%20N%C2%BA%2007%2C%20Catal%C3%A3o%20GO%2075706-360" target="_blank" rel="noopener">
+              <a class="btn-ghost" href="https://www.google.com/maps/search/?api=1&query=Rua%2026%2C%20N%C2%BA%20007%2C%20Catal%C3%A3o%20GO%2075706-360" target="_blank" rel="noopener">
                 Ver no mapa
               </a>
             </div>
@@ -454,6 +465,22 @@
       </div>
     </section>
   </main>
+
+  <!-- ✅ TOAST PREMIUM -->
+  <div class="toast" id="toast" hidden data-type="success" role="status" aria-live="polite" aria-atomic="true">
+    <div class="toast-inner">
+      <div class="toast-icon" id="toastIcon" aria-hidden="true"></div>
+      <div>
+        <div class="toast-title" id="toastTitle">Tudo certo</div>
+        <div class="toast-msg" id="toastMsg"></div>
+      </div>
+      <button class="toast-close" id="toastClose" type="button" aria-label="Fechar aviso">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+  </div>
 
   <footer class="site-footer">
     <div class="container">
@@ -488,7 +515,6 @@
     </div>
   </footer>
 
-  <!-- Botão flutuante do WhatsApp -->
   <a class="wa-float"
      href="https://wa.me/5564992288869?text=Ol%C3%A1!%20Quero%20falar%20com%20a%20RJ%20Contabilidade."
      target="_blank" rel="noopener"
